@@ -1,0 +1,26 @@
+Lagura_ClassRecord = {"Charles": {"StudID": "S001", "Grade": [89,92,96,94,95,91,90]},
+                      "Clark": {"StudID": "S002", "Grade": [85,86,77,90,88,85,84]},
+                      "Osas": {"StudID": "S003", "Grade": [77,59,62,63,61,54,55]}}
+search = input("Please enter a student name to search: ").title()
+
+found = False
+
+for name, info in Lagura_ClassRecord.items():
+    if name == search:
+        print("Student Found: ", name)
+        print(f"Student ID: {info['StudID']}")
+        print(f"Student Grades: {info['Grade']}")
+        print(f"The highest Grade is: {max(info['Grade'])} ")
+        print(f"The lowest Grade is: {min(info['Grade'])}")
+        if any(grade < 60 for grade in info['Grade']):
+            print("Student has below 60 grade. Candidate for intervention.")
+        found = True
+        avg = sum(info['Grade']) / len(info['Grade'])
+        print(f"The average grade is: {avg:.2f}")
+        break
+if not found:
+     print("Student not found")
+
+
+
+
