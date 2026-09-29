@@ -1,3 +1,4 @@
+#Blood Sugar level
 Lagura_Patients = {
     "CJ": [80,90,85,120,40,68,70],
     "Charles": [80,130,91,70,56,100,130],
