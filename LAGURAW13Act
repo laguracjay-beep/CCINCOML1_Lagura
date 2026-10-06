@@ -1,0 +1,38 @@
+Lagura_Employee = {
+    "E100": {"Name": "Liane Uy", "Rank": "JO 5","DutyHours": (40,40,42,43),"Basic Pay": 29000, "Requiredhours": 160},
+    "E102": {"Name": "Robert Santos", "Rank": "Manager 1","DutyHours": (30,29,27,30), "Basic Pay": 60000, "Requiredhours": 120},
+    "E101": {"Name": "Charles Chiu", "Rank": "Ceo","DutyHours": (50,48,55, 50), "Basic Pay": 100000, "Requiredhours": 200}}
+Lagura_EmployeeSearch = input("Please input Employee id  here: ")
+found = False
+
+for Lagura_eid, Lagura_Dataset in Lagura_Employee.items():
+    if Lagura_EmployeeSearch == Lagura_eid:
+        found = True
+        Lagura_DutyHours = Lagura_Dataset["DutyHours"]
+        Lagura_RequiredHours = Lagura_Dataset["Requiredhours"]
+        Lagura_Exceeding = (Lagura_DutyHours[0] + Lagura_DutyHours[1] + Lagura_DutyHours[2] + Lagura_DutyHours[3]) - Lagura_RequiredHours
+        print("Found")
+        print("Employee id: ", Lagura_eid)
+        print("Employee Name: ", Lagura_Dataset["Name"])
+        print("Employee Rank: ", Lagura_Dataset["Rank"])
+        print("Emplyee Duty Hours: ", *Lagura_DutyHours)
+        print("Emplyee Basic Pay", Lagura_Dataset["Basic Pay"])
+        print("Employee Required hours: ", Lagura_Dataset["Requiredhours"])
+
+        Lagura_rate = Lagura_Dataset["Basic Pay"]/ Lagura_Dataset["Requiredhours"]
+        print("Rate: ", Lagura_rate)
+        if Lagura_Exceeding >= 0:
+            print("Employee Exceeding Hours: ", Lagura_Exceeding)
+            Lagura_OvertimePay = (Lagura_rate * 1.5) * Lagura_Exceeding
+            print(f"Employee Overtime Pay: {Lagura_OvertimePay:.2f}")
+            Lagura_Gross = Lagura_Dataset["Basic Pay"] + Lagura_OvertimePay
+        else:
+            undertime_hours = abs(Lagura_Exceeding)
+            print("Employee Undertime Hours: ", undertime_hours)
+            Lagura_Deduction = Lagura_rate * undertime_hours
+            print(f"Employee Undertime Deduction: {Lagura_Deduction:.2f}")
+            Lagura_Gross = Lagura_Dataset["Basic Pay"] - Lagura_Deduction
+        print("Employee Gross Pay: ", Lagura_Gross)
+        break
+if not found:
+    print("Employee Not Found.")
