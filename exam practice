@@ -1,0 +1,35 @@
+Lagura_Exams = {
+"T1": {"Name": "Leo Ang", "Score": (85, 90, 78, 92, 88, 90)},
+"T2": {"Name": "Gina Cruz", "Score": (60, 55, 70, 65, 58, 60)},
+"T3": {"Name": "Omar Reyes", "Score": (100, 95, 98, 100, 97, 100)}
+}
+found = False
+Lagura_Search = input("Please input Student ID here: ").title()
+
+for Lagura_Sid, Lagura_Data in Lagura_Exams.items():
+    if Lagura_Search == Lagura_Sid:
+        found = True
+        Lagura_ExamScore = Lagura_Data["Score"]
+        print("Student Found!")
+        print("Student Name: ", Lagura_Data["Name"] )
+        print("Student Firsts 3 Exam Scores: ", Lagura_ExamScore[:3])
+        print("Student Last 3 Exam Scores: ", Lagura_ExamScore[-3:])
+        print("Number of exams: ", len(Lagura_ExamScore))
+        Lagura_FirstScores = (Lagura_ExamScore[0] + Lagura_ExamScore[1]  + Lagura_ExamScore[2]) / 3
+        print(f"The Average of the first 3 exams are: {Lagura_FirstScores:.2f}") 
+        Lagura_LastScores = (Lagura_ExamScore[3] + Lagura_ExamScore[4] + Lagura_ExamScore[5]) / 3
+        print(f"The Average of the last 3 exams are: {Lagura_LastScores:.2f}")
+        Lagura_MaxScore = Lagura_ExamScore.count(max(Lagura_ExamScore))
+        print("The amount of times the highest scores was Scored: ", Lagura_MaxScore)
+        if Lagura_FirstScores < Lagura_LastScores: 
+            print("Student is improving")
+        elif Lagura_FirstScores == Lagura_LastScores:
+            print("Student is consistent")
+        else: 
+            print("Student is declining")
+        Lagura_MinMax = max(Lagura_ExamScore) - min(Lagura_ExamScore)
+        print("The Score range is: ", Lagura_MinMax)
+        break 
+if not found: 
+    print("Student not found")
+                
